@@ -1,0 +1,15 @@
+// src/test-db.js
+const db = require('./db');
+
+const testConnection = async () => {
+    try {
+        const res = await db.query('SELECT NOW()');
+        console.log('Conexão bem-sucedida ao banco de dados:', res.rows[0]);
+    } catch (err) {
+        console.error('Erro ao conectar ao banco de dados:', err);
+    } finally {
+        db.pool.end(); // Fecha a conexão quando terminar
+    }
+};
+
+testConnection();
